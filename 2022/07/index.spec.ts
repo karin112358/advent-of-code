@@ -1,6 +1,3 @@
----
-to: 2022/<%= name %>/index.spec.ts
----
 import { part1, part2 } from './solve';
 const jestConsole = console;
 beforeEach(() => (global.console = require('console')));
@@ -20,4 +17,26 @@ describe('Day 2022/01', () => {
   });
 });
 
-const input1 = { value: ``, result1: 0, result2: 0 };
+const input1 = { value: `$ cd /
+$ ls
+dir a
+14848514 b.txt
+8504156 c.dat
+dir d
+$ cd a
+$ ls
+dir e
+29116 f
+2557 g
+62596 h.lst
+$ cd e
+$ ls
+584 i
+$ cd ..
+$ cd ..
+$ cd d
+$ ls
+4060174 j
+8033020 d.log
+5626152 d.ext
+7214296 k`, result1: 95437, result2: 24933642 };

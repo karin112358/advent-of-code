@@ -1,32 +1,6 @@
 import { readFileSync } from 'fs';
 import { logError, logHighlight, logSuccess } from '../../functions/log';
-const log = console.log;
-
-export function part1(input: string): string | number {
-  const depths = splitInput(input);
-
-  let increase = 0;
-  for (let i = 1; i < depths.length; i++) {
-    if (depths[i] > depths[i - 1]) increase++;
-  }
-
-  return increase;
-}
-
-export function part2(input: string): string | number {
-  const depths = splitInput(input);
-
-  let increase = 0;
-  for (let i = 1; i < depths.length; i++) {
-    if (depths[i] > depths[i - 1]) increase++;
-  }
-
-  return increase;
-}
-
-function splitInput(input: string): number[] {
-  return input.split(/\r?\n/).map((i) => parseInt(i));
-}
+import { part1, part2 } from './solve';
 
 try {
   const input = readFileSync('./2022/template/input.txt', 'utf-8');
