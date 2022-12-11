@@ -2,7 +2,7 @@
 
 ## Create New Day From Template
 
-```npm run create-2022 01```
+```npm run create-2022 -- 01```
 
 ## Solve Day
 

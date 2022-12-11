@@ -65,10 +65,10 @@ function moveKnot(head: Position, tail: Position) {
     tail.x += Math.sign(head.x - tail.x);
   } else if (Math.abs(tail.y - head.y) >= 2 && tail.x === head.x) {
     tail.y += Math.sign(head.y - tail.y);
-  } else if (Math.abs(tail.x - head.x) >= 2 && Math.abs(tail.y - head.y) >= 1) {
-    tail.x += Math.sign(head.x - tail.x);
-    tail.y += Math.sign(head.y - tail.y);
-  } else if (Math.abs(tail.x - head.x) >= 1 && Math.abs(tail.y - head.y) >= 2) {
+  } else if (
+    (Math.abs(tail.x - head.x) >= 2 && Math.abs(tail.y - head.y) >= 1) ||
+    (Math.abs(tail.x - head.x) >= 1 && Math.abs(tail.y - head.y) >= 2)
+  ) {
     tail.x += Math.sign(head.x - tail.x);
     tail.y += Math.sign(head.y - tail.y);
   }
