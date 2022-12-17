@@ -4,16 +4,14 @@ import { part1, part2 } from './solve';
 
 try {
   const input = readFileSync('./2022/template/input.txt', 'utf-8');
-  const solution1 = part1(input);
-  const solution2 = part2(input);
 
   logHighlight('*** Template ***');
   console.time('Duration part 1');
-  logSuccess('Part 1:', solution1);
+  logSuccess('Part 1:', part1(input));
   console.timeEnd('Duration part 1');
 
   console.time('Duration part 2');
-  logSuccess('Part 2:', solution2);
+  logSuccess('Part 2:', part2(input));
   console.timeEnd('Duration part 2');
 } catch (e: any) {
   logError(e);
