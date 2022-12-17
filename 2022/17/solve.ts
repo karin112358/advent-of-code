@@ -1,5 +1,4 @@
 import { logError, logHighlight, logSuccess } from '../../functions/log';
-import { writeFileSync } from 'fs';
 
 export function part1(input: string): string | number {
   let jetIndex = 0;
@@ -12,7 +11,7 @@ export function part1(input: string): string | number {
   rocks.push(['..#....', '..#....', '..#....', '..#....']);
   rocks.push(['..##...', '..##...']);
 
-  for (let i = 0; i < 640; i++) {
+  for (let i = 0; i < 2022; i++) {
     let rock = rocks[i % rocks.length].slice();
     let pos = tower.length + 3;
     let canFall = true;
@@ -32,21 +31,12 @@ export function part1(input: string): string | number {
       pos--;
       jetIndex++;
     }
-
-    console.log(i + 1, tower.length);
-    if (i + 1 === 627) {
-      writeFileSync('./2022/17/output.txt', tower.reverse().join('\n'));
-      console.log(tower.slice(900).reverse().join('\n'));
-    }
   }
-
-  //console.log(tower.slice(900).reverse().join('\n'));
 
   return tower.length;
 }
 
 export function part2(input: string): string | number {
-  return -1;
   let jetIndex = 0;
   const tower: string[] = [];
   const rocks: string[][] = [];
@@ -88,13 +78,9 @@ export function part2(input: string): string | number {
     added.push(tower.length - prevTowerLength);
     prevTowerLength = tower.length;
 
-    if (i % 1000 === 0) {
-      console.log(i);
-    }
-
     // find repeating pattern
     if (added.length > 10000 && !repeatHeight) {
-      for (let length = 100; length <= added.length / 2; length++) {
+      for (let length = minRepeatLength; length <= added.length / 2; length++) {
         const last = added.slice(added.length - length);
         const prev = added.slice(added.length - length - length, added.length - length);
 
@@ -103,36 +89,10 @@ export function part2(input: string): string | number {
           repeatHeight = height;
           repeatLength = last.length;
           maxRocks = i + ((maxRocks - i) % repeatLength);
-
-          logSuccess(
-            'REPEATING SECTION',
-            i,
-            'tower height',
-            tower.length,
-            'repeat length',
-            last.length,
-            'repeat height',
-            height,
-            'max rocks',
-            maxRocks
-          );
         }
       }
     }
   }
-
-  logSuccess(
-    'RESULT',
-    maxRocks,
-    'tower height',
-    tower.length,
-    'repeat length',
-    repeatLength,
-    'repeat height',
-    repeatHeight
-  );
-
-  //console.log(added.map((x) => x.toString()).join(','));
 
   return tower.length + repeatHeight * ((1000000000000 - maxRocks) / repeatLength);
 }
@@ -155,9 +115,6 @@ function addToTower(tower: string[], rock: string[], pos: number) {
       tower[towerPos] = newRow;
     }
   }
-
-  // logHighlight('addToTower');
-  // console.log(tower.slice().reverse().map(s => '|' + s + '|').join('\n'));
 }
 
 function canMoveDown(tower: string[], rock: string[], pos: number): boolean {
@@ -218,8 +175,6 @@ function applyJet(tower: string[], rock: string[], jet: string, pos: number): st
       }
     }
   }
-
-  //console.log('applyJet', rock, pos);
 
   return rock;
 }
